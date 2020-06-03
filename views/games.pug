@@ -9,12 +9,17 @@ block layout-content
         //- h1 #{listedGames.content}
       pre.Details=JSON.stringify(listedGames.content, null, 2)
 
+                h3 Add Game
                 form(id = "form-game", method = "post")
                   input(id = 'type' type='json', placeholder='type' name='game[type]')
                   input(id = 'title' type='json', placeholder='Game Title' name='game[title]')
                   input(id = 'year' type='json', placeholder='Release Year' name='game[year]')
                   input(id = 'creator' type='json', placeholder='Creators' name='game[creator]')
                   button(class='btn btn-primary custom-button' type='submit') Submit
+                
+                //- h3 Delete Game
+                //-   form(id = "form-game", method = "delete")
+                //-   input(id = 'id' type='text', placeholder='Enter ID' name='game[id]')
 
     //- div.NavButtons
     //-   a(href="/games")
