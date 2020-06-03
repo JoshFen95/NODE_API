@@ -1,0 +1,33 @@
+extends layout
+
+block layout-content
+  div.View.GameView
+    h1.Banner Games Libary
+    div.Message
+      div.Title
+        h3 Here are you Games
+        //- h1 #{listedGames.content}
+      pre.Details=JSON.stringify(listedGames.content, null, 2)
+
+                form(id = "form-game", method = "post")
+                  input(id = 'type' type='json', placeholder='type' name='game[type]')
+                  input(id = 'title' type='json', placeholder='Game Title' name='game[title]')
+                  input(id = 'year' type='json', placeholder='Release Year' name='game[year]')
+                  input(id = 'creator' type='json', placeholder='Creators' name='game[creator]')
+                  button(class='btn btn-primary custom-button' type='submit') Submit
+
+    //- div.NavButtons
+    //-   a(href="/games")
+    //-     div.NavButton GAMES
+
+    //- div.NavButtons
+    //-   a(href="/addgame")
+    //-     div.NavButton Add a Game
+          
+    //- div.NavButtons
+    //-   a(href="/films")
+    //-     div.NavButton Remove a Game
+
+    div.NavButtons
+      a(href="/")
+        div.NavButton Go Back

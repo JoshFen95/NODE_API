@@ -1,0 +1,27 @@
+extends layout
+
+block layout-content
+  div.View.GameView
+    h1.Banner Games Libary
+    div.Message
+      div.Title
+        h3 Time to add a game to the libary
+        //- h1 #{listedGames.content}
+      pre.Details=''
+        
+        form(id = "form-game", method = "post", action= "/addForm")
+        input(id = 'title' type='json', placeholder='Game Title' name='game[title]')
+        input(id = 'year' type='json', placeholder='Release Year' name='game[year]')
+        input(id = 'creator' type='json', placeholder='Creators' name='game[creator]')
+
+
+
+
+    div.NavButtons
+      a(href="/added")
+        div.NavButton Add a Game
+          
+
+    div.NavButtons
+      a(href="/games")
+        div.NavButton Go Back

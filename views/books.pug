@@ -1,0 +1,24 @@
+extends layout
+
+block layout-content
+  div.View.BookView
+    h1.Banner Book Libary
+    div.Message
+      div.Title
+        h3 Here are your Books
+        //- h1 #{listedGames.content}
+      pre.Details=JSON.stringify(listedBooks, null, 2)
+
+
+
+    div.NavButtons
+      a(href="/")
+        div.NavButton Add a Book
+          
+    div.NavButtons
+      a(href="/films")
+        div.NavButton Remove a Book
+
+    div.NavButtons
+      a(href="/")
+        div.NavButton Go Back
