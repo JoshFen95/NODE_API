@@ -5,10 +5,7 @@
  */
 const express = require("express");
 const path = require("path");
-var cors = require("cors");
 const axios = require("axios");
-var promise = require("promise");
-var bodyParser = require("body-parser");
 
 /**
  * App Variables
@@ -22,6 +19,7 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
+app.disable("etag");
 
 /**
  * Routes Definitions
@@ -37,18 +35,27 @@ app.get("/user", (req, res) => {
 //// GAME METHODS ////
 // GET GAMES
 
-var getGames = new Promise((resolve, reject) => {
-  // axios get then resolve data
-
-  axios.get("http://localhost:8080/api/v1/media/GAME").then((res) => {
-    resolve(res.data);
+// //get games from db
+// let getGames = new Promise((resolve) => {
+//   axios.get("http://localhost:8080/api/v1/media/GAME")
+//   .then((res) => {
+//    console.log(res.data)
+//   return resolve(res.data);
+//   });
+// });
+let getGames = function () {
+  return new Promise((resolve) => {
+    // axios get then resolve data
+    axios.get("http://localhost:8080/api/v1/media/GAME").then((res) => {
+      console.log(res.data);
+      return resolve(res.data);
+    });
   });
-  return getGames;
-});
-
+};
+//display games at url;
 app.get("/games", (req, res) => {
-  getGames.then((list) => {
-    console.log(list);
+  getGames().then((list) => {
+    // console.log(list);
     res.render("games", { listedGames: { content: list } });
   });
 });
@@ -60,7 +67,7 @@ app.post("/games", function (req, res) {
   axios
     .post("http://localhost:8080/api/v1/media/GAME/add", game)
     .then((res) => {
-      console.log(res.data);
+      // console.log(res.data);
     })
     .catch(() => {
       console.error("Error Occurred");
@@ -68,48 +75,84 @@ app.post("/games", function (req, res) {
 });
 
 // DELETE GAME
-app.get("/delete", function (req, res) {
+app.delete("/games", function (req, res) {
+  console.log("heeeellllo");
+  let game = req.params;
+  console.log(game);
   axios
-    .delete("http://localhost:8080/api/v1/media/GAME/5eb00d3945f6bc46887d8a75")
+    .delete("http://localhost:8080/api/v1/media/GAME/:id", game)
     .then((res) => {
       console.log(res.data);
+    })
+    .catch(() => {
+      console.error("Error Occurred");
     });
 });
 
 //// BOOK METHODS ////
 // GET BOOKS
-var getBooks = new Promise((resolve, reject) => {
-  // axios get then resolve data
-
-  axios.get("http://localhost:8080/api/v1/media/BOOK").then((res) => {
-    resolve(res.data);
+let getBooks = function () {
+  return new Promise((resolve) => {
+    // axios get then resolve data
+    axios.get("http://localhost:8080/api/v1/media/BOOK").then((res) => {
+      console.log(res.data);
+      return resolve(res.data);
+    });
   });
-  return getBooks;
-});
-
+};
+//display games at url;
 app.get("/books", (req, res) => {
-  getBooks.then((list) => {
-    console.log(list);
+  getBooks().then((list) => {
+    // console.log(list);
     res.render("books", { listedBooks: { content: list } });
   });
 });
 
-//// FILM METHODS ////
-// GET FILMS
-var getFilms = new Promise((resolve, reject) => {
-  // axios get then resolve data
-
-  axios.get("http://localhost:8080/api/v1/media/FILM").then((res) => {
-    resolve(res.data);
-  });
-  return getFilms;
+// PUT GAME
+app.post("/books", function (req, res) {
+  let book = req.body.book;
+  console.log(book);
+  axios
+    .post("http://localhost:8080/api/v1/media/BOOK/add", book)
+    .then((res) => {
+      // console.log(res.data);
+    })
+    .catch(() => {
+      console.error("Error Occurred");
+    });
 });
 
+//// FILM METHODS ////
+// GET FILMS
+let getFilms = function () {
+  return new Promise((resolve) => {
+    // axios get then resolve data
+    axios.get("http://localhost:8080/api/v1/media/FILM").then((res) => {
+      console.log(res.data);
+      return resolve(res.data);
+    });
+  });
+};
+//display games at url;
 app.get("/films", (req, res) => {
-  getFilms.then((list) => {
-    console.log(list);
+  getFilms().then((list) => {
+    // console.log(list);
     res.render("films", { listedFilms: { content: list } });
   });
+});
+
+// PUT GAME
+app.post("/films", function (req, res) {
+  let film = req.body.film;
+  console.log(film);
+  axios
+    .post("http://localhost:8080/api/v1/media/FILM/add", film)
+    .then((res) => {
+      // console.log(res.data);
+    })
+    .catch(() => {
+      console.error("Error Occurred");
+    });
 });
 
 /**

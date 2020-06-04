@@ -7,17 +7,22 @@ block layout-content
       div.Title
         h3 Here are your Books
         //- h1 #{listedGames.content}
-      pre.Details=JSON.stringify(listedBooks, null, 2)
+      pre.Details=JSON.stringify(listedBooks.content, null, 2)
+
+                h3 Add a book
+                form(id = "form-book", method = "post")
+                  input(id = 'type' type='json', placeholder='type' name='book[type]')
+                  input(id = 'title' type='json', placeholder='book Title' name='book[title]')
+                  input(id = 'year' type='json', placeholder='Release Year' name='book[year]')
+                  input(id = 'creator' type='json', placeholder='Creators' name='book[creator]')
+                  button(class='btn btn-primary custom-button' type='submit') Add
+                
+                h3 Delete a book
+                  form(id = "form-book-delete", method = "delete")
+                    input(id = 'id' type='text', placeholder='Enter ID' name='book[id]')
+                    button(class='btn btn-primary custom-button' type='submit') Delete
 
 
-
-    div.NavButtons
-      a(href="/")
-        div.NavButton Add a Book
-          
-    div.NavButtons
-      a(href="/films")
-        div.NavButton Remove a Book
 
     div.NavButtons
       a(href="/")

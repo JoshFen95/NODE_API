@@ -52,6 +52,10 @@ h3 {
 
 h1 {
   font-size: 40px;
+  font-weight: bold;
+}
+h3 {
+  font-weight: bold;
 }
 
 a {
@@ -96,6 +100,8 @@ a {
   overflow: hidden;
   background: white;
   padding: 15px;
+  opacity: .85;
+
 
   font-family: var(--logo-font);
 
@@ -108,10 +114,15 @@ a {
   padding: 30px;
   border-bottom: var(--ui-shawdow-border);
   box-shadow: var(--ui-shawdow);
+  overflow: scroll;
+  opacity: .85;
+  font-weight: bold;
 }
 
 .Message > .Title {
   padding-bottom: 20px;
+  opacity: .85;
+  font-weight: bold;
 }
 
 
