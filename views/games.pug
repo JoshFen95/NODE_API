@@ -5,23 +5,19 @@ block layout-content
     h1.Banner Games Libary
     div.Message
       div.Title
-        h3 Here are you Games
+        h3 Here are your Games
         //- h1 #{listedGames.content}
       pre.Details=JSON.stringify(listedGames.content, null, 2)
 
-                h3 Add a Game
-                form(id = "form-game", method = "post")
-                  input(id = 'type' type='json', placeholder='type' name='game[type]')
-                  input(id = 'title' type='json', placeholder='Game Title' name='game[title]')
-                  input(id = 'year' type='json', placeholder='Release Year' name='game[year]')
-                  input(id = 'creator' type='json', placeholder='Creators' name='game[creator]')
-                  button(class='btn btn-primary custom-button' type='submit') Add
-                
-                h3 Delete a Game
-                  form(id = "form-game-delete", method = "delete")
-                    input(id = 'id' type='text', placeholder='Enter ID' name='game[id]')
-                    button(class='btn btn-primary custom-button' type='submit') Delete
 
+                
+    div.NavButtons
+      a(href="/games/add")
+        div.NavButton Add
+
+    div.NavButtons
+      a(href="/games/delete")
+        div.NavButton Delete
 
     div.NavButtons
       a(href="/")

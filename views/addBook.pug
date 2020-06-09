@@ -1,0 +1,26 @@
+extends layout
+
+block layout-content
+  div.View.BookView
+    h1.Banner Add a Book
+    div.Message
+      div.Title
+        h3 Here are your Books
+        //- h1 #{listedbooks.content}
+      pre.Details=JSON.stringify(listedBooks.content, null, 2)
+
+
+                h3 Add a Book
+                form(id = "form-book", method = "post")
+                  input(id = 'type' type='json', placeholder='type' name='book[type]')
+                  input(id = 'title' type='json', placeholder='Book Title' name='book[title]')
+                  input(id = 'year' type='json', placeholder='Release Year' name='book[year]')
+                  input(id = 'creator' type='json', placeholder='Creators' name='book[creator]')
+                  button(class='btn btn-primary custom-button' type='submit') Add
+                
+           
+
+
+    div.NavButtons
+      a(href="/books")
+        div.NavButton Go Back

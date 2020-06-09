@@ -1,0 +1,19 @@
+extends layout
+
+block layout-content
+  div.View.GameView
+    h1.Banner Delete Game
+    div.Message
+      div.Title
+        h3 Here are your Games
+      pre.Details=JSON.stringify(listedGames.content, null, 2)
+                
+                h3 Delete a Film
+                    form(id = "form-game-delete", method = "post")
+                      input(id = 'id' type='json', placeholder='Enter ID' name='game[id]')
+                      button(class='btn btn-primary custom-button' type='submit') Delete
+
+
+    div.NavButtons
+      a(href="/games")
+        div.NavButton Go Back

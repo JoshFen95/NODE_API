@@ -2,25 +2,24 @@ extends layout
 
 block layout-content
   div.View.GameView
-    h1.Banner Games Libary
+    h1.Banner Add a Game
     div.Message
       div.Title
-        h3 Time to add a game to the libary
+        h3 Here are your Games
         //- h1 #{listedGames.content}
-      pre.Details=''
-        
-        form(id = "form-game", method = "post", action= "/addForm")
-        input(id = 'title' type='json', placeholder='Game Title' name='game[title]')
-        input(id = 'year' type='json', placeholder='Release Year' name='game[year]')
-        input(id = 'creator' type='json', placeholder='Creators' name='game[creator]')
+      pre.Details=JSON.stringify(listedGames.content, null, 2)
 
 
+                h3 Add a Game
+                form(id = "form-game", method = "post")
+                  input(id = 'type' type='json', placeholder='type' name='game[type]')
+                  input(id = 'title' type='json', placeholder='Game Title' name='game[title]')
+                  input(id = 'year' type='json', placeholder='Release Year' name='game[year]')
+                  input(id = 'creator' type='json', placeholder='Creators' name='game[creator]')
+                  button(class='btn btn-primary custom-button' type='submit') Add
+                
+           
 
-
-    div.NavButtons
-      a(href="/added")
-        div.NavButton Add a Game
-          
 
     div.NavButtons
       a(href="/games")

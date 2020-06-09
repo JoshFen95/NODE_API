@@ -1,0 +1,26 @@
+extends layout
+
+block layout-content
+  div.View.FilmView
+    h1.Banner Add a Film
+    div.Message
+      div.Title
+        h3 Here are your Film
+        //- h1 #{listedFilm.content}
+      pre.Details=JSON.stringify(listedFilms.content, null, 2)
+
+
+                h3 Add a Film
+                form(id = "form-film", method = "post")
+                  input(id = 'type' type='json', placeholder='type' name='film[type]')
+                  input(id = 'title' type='json', placeholder='Film Title' name='film[title]')
+                  input(id = 'year' type='json', placeholder='Release Year' name='film[year]')
+                  input(id = 'creator' type='json', placeholder='Creators' name='film[creator]')
+                  button(class='btn btn-primary custom-button' type='submit') Add
+                
+           
+
+
+    div.NavButtons
+      a(href="/films")
+        div.NavButton Go Back

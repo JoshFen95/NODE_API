@@ -9,20 +9,15 @@ block layout-content
         //- h1 #{listedGames.content}
       pre.Details=JSON.stringify(listedFilms.content, null, 2)
 
-                h3 Add a Film
-                form(id = "form-film", method = "post")
-                  input(id = 'type' type='json', placeholder='type' name='film[type]')
-                  input(id = 'title' type='json', placeholder='film Title' name='film[title]')
-                  input(id = 'year' type='json', placeholder='Release Year' name='film[year]')
-                  input(id = 'creator' type='json', placeholder='Creators' name='film[creator]')
-                  button(class='btn btn-primary custom-button' type='submit') Add
                 
-                h3 Delete a film
-                  form(id = "form-film-delete", method = "delete")
-                    input(id = 'id' type='text', placeholder='Enter ID' name='film[id]')
-                    button(class='btn btn-primary custom-button' type='submit') Delete
+                
+    div.NavButtons
+      a(href="/films/add")
+        div.NavButton Add
 
-
+    div.NavButtons
+      a(href="/films/delete")
+        div.NavButton Delete
 
     div.NavButtons
       a(href="/")
