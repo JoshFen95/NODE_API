@@ -1,24 +1,61 @@
-extends layout
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  meta(http-equiv='X-UA-Compatible' content='ie=edge')
+  title Films
+  // JQuery //
+  script(src='https://code.jquery.com/jquery-3.4.1.min.js')
+  // Bootstrap 4.4.1 //
+  link(rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css')
+  script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js')
 
-block layout-content
-  div.View.FilmView
-    h1.Banner Film Libary
-    div.Message
-      div.Title
-        h3 Here are your Films
-        //- h1 #{listedGames.content}
-      pre.Details=JSON.stringify(listedFilms.content, null, 2)
+// My CSS //
+link(rel='stylesheet' href='/style2.css')
 
-                
-                
-    div.NavButtons
-      a(href="/films/add")
-        div.NavButton Add
+body
 
-    div.NavButtons
-      a(href="/films/delete")
-        div.NavButton Delete
+// NavBar //
+include navbar
 
-    div.NavButtons
-      a(href="/")
-        div.NavButton Go Back
+
+h1 View Films
+
+
+// Carousel //
+.carousel-backing(style = 'width: 1500px; height: 700px; margin: 0 auto; position:relative; top:80px;')
+  #carouselExampleControls.carousel.slide(data-ride='carousel' style ='width: 550px; height: 550px; margin: 0 auto;')
+      .carousel-inner
+        - let values = listedFilms.content
+            each val, index in values ? values : ['There are no values']
+              if(index === 0)
+                .carousel-item.active
+                  h2= JSON.stringify(val.title)
+                  h3='Created by ' + JSON.stringify(val.creator) + '('+ JSON.stringify(val.year) +')'
+                  img.d-block.w-100(src=val.url, alt="Image Title")
+                  .video-backing
+                    .embed-responsive.embed-responsive-16by9(style = 'width: 500px; height: 250px; margin: 0 auto; position:relative; top: 25px;')
+                      iframe.embed-responsive-item(src=val.videoUrl, alt= 'https://www.youtube.com/embed/zpOULjyy-n8?rel=0',allowfullscreen='')
+                 
+              else     
+                .carousel-item
+                  h2= JSON.stringify(val.title)
+                  h3='Created by ' + JSON.stringify(val.creator) + '('+ JSON.stringify(val.year) +')'
+                  img.d-block.w-100(src=val.url, alt="Image Title")
+                  .video-backing
+                    .embed-responsive.embed-responsive-16by9(style = 'width: 500px; height: 250px; margin: 0 auto; position:relative; top: 25px;')
+                      iframe.embed-responsive-item(src= val.videoUrl, alt= 'https://www.youtube.com/embed/zpOULjyy-n8?rel=0',allowfullscreen='')
+
+
+
+                  
+
+
+        a.carousel-control-prev(href='#carouselExampleControls' role='button' data-slide='prev')
+            span.carousel-control-prev-icon(aria-hidden='true')
+            span.sr-only Previous
+        a.carousel-control-next(href='#carouselExampleControls' role='button' data-slide='next')
+            span.carousel-control-next-icon(aria-hidden='true')
+            span.sr-only Next
+
+

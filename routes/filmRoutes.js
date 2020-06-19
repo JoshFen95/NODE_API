@@ -43,8 +43,9 @@ router.post("/add", function (req, res) {
   logger.info(film);
   axios
     .post("http://localhost:8080/api/v1/media/FILM/add", film)
-    .then((res) => {
+    .then(() => {
       logger.info(res);
+      res.redirect("/films/add");
     })
     .catch((err) => {
       if (err.response.status === 400) {
@@ -55,7 +56,6 @@ router.post("/add", function (req, res) {
       }
       logger.error(`An error has occured. ${err}`);
     });
-  res.redirect("/films/add");
 });
 
 // DELETE film
@@ -70,7 +70,9 @@ router.post("/delete", function (req, res) {
   logger.info(film);
   axios
     .delete("http://localhost:8080/api/v1/media/FILM/" + film.id)
-    .then((res) => {})
+    .then(() => {
+      res.redirect("/films/delete");
+    })
     .catch((err) => {
       if (err.response.status === 404) {
         console.log("ID could not be found");
@@ -82,7 +84,6 @@ router.post("/delete", function (req, res) {
         `An error occured. Status Code:${err.response.status}. ${err}`
       );
     });
-  res.redirect("/films/delete");
 });
 
 module.exports = router;

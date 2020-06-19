@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway:300,400,700');
+
+
+body,html{
+    height: 120%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background: radial-gradient( circle 590px at 8.2% 13.8%,  rgba(18,35,60,1) 0%, #bbb 90% );
+
+}
+
+body{
+    justify-content: center;
+}
+
+.about{
+    background-color:#778899;
+    opacity: 1;
+    border-radius: 60px/60px;
+    /* align-items: center; */
+    width: 650px; 
+    height: 400px; 
+    margin: 0 auto;
+    position: relative;; 
+    top:200px;
+    text-align: center;
+    padding-top: 50px;
+
+}
+
+.carousel-backing{
+    background-color:#778899;
+    opacity: 1;
+    border-radius: 60px/60px;
+    /* align-items: left; */
+
+}
+
+.video-backing{
+    background-color:#778899;
+    opacity: 1;
+    border-radius: 60px/60px;
+    align-items: center;
+    width: 550px; 
+    height: 300px; 
+    margin: 0 auto;
+    position: absolute;; 
+    top:770px;
+}
+.embed-responsive.embed-responsive-16by9{
+    border-radius: 50px/50px;
+}
+
+img.d-block{
+    border-radius: 50px/50px;
+    width: 550px;
+    height: 550px
+}
+
+.carousel-inner{
+    height: 1200px;
+}
+
+
+.form-container{
+    background-color:#778899;
+    opacity: 1;
+    border-radius: 50px/50px;
+}
+
+input.form-control, button.btn.btn-primary.btn-lg.btn-block{
+    border-radius: 50px/50px;
+}
+
+h1{
+    text-align: center;
+    position:relative; 
+    top:40px;
+    font-family: Raleway;
+
+}
+
+h2, h3 ,p{
+    color: white;
+    font-family: Raleway;
+}
+
+a.carousel-control-prev, a.carousel-control-next{
+    bottom: 250px;
+
+}
+
+
+
+span.carousel-control-prev-icon,span.carousel-control-next-icon{
+    position: absolute;
+    top: 500px;
+
+}
+
+
+button.btn.btn-primary.btn-lg.btn-block{
+position: relative;
+font-size: 1.5rem;
+padding: .8rem 1.5rem;
+background: #ffffff;
+text-transform: uppercase;
+font-weight: 300;
+text-decoration: none;
+color: #6c757d;
+border-radius: 50px/50px;
+letter-spacing: .1rem;
+border: .1px solid #bbb;
+cursor: pointer;
+z-index: 1;
+overflow: hidden;
+transition: .4s ease-in;
+}
+
+button.btn.btn-primary.btn-lg.btn-block:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background: #007bff;
+    height: .1px;
+    width: 100%;
+    z-index: -1;
+    transition: .4s ease-in;
+    border-radius: 50px/50px;
+
+}
+button.btn.btn-primary.btn-lg.btn-block:hover:before{
+    height: 100%;
+    border-radius: 50px/50px;
+}
+
+button.btn.btn-primary.btn-lg.btn-block:hover{
+    color:#000;
+    border-radius: 50px/50px;
+}
+
+
+
+
+

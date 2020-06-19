@@ -1,26 +1,57 @@
-extends layout
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  meta(http-equiv='X-UA-Compatible' content='ie=edge')
+  title Add Film
+  // JQuery //
+  script(src='https://code.jquery.com/jquery-3.4.1.min.js')
+  // Bootstrap 4.4.1 //
+  link(rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css')
+  script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js')
 
-block layout-content
-  div.View.FilmView
-    h1.Banner Add a Film
-    div.Message
-      div.Title
-        h3 Here are your Film
-        //- h1 #{listedFilm.content}
-      pre.Details=JSON.stringify(listedFilms.content, null, 2)
+  
+
+// My CSS //
+link(rel='stylesheet' href='/style2.css')
+
+// NavBar //
+include navbar
+
+h1 Add Film
 
 
-                h3 Add a Film
-                form(id = "form-film", method = "post")
-                  input(id = 'type' type='json', placeholder='type' name='film[type]')
-                  input(id = 'title' type='json', placeholder='Film Title' name='film[title]')
-                  input(id = 'year' type='json', placeholder='Release Year' name='film[year]')
-                  input(id = 'creator' type='json', placeholder='Creators' name='film[creator]')
-                  button(class='btn btn-primary custom-button' type='submit') Add
-                
-           
+// Carousel //
+.carousel-backing(style = 'width: 1500px; height: 700px; margin: 0 auto; position:relative; top:80px;')
+  #carouselExampleControls.carousel.slide(data-ride='carousel' style ='width: 550px; height: 550px; margin: 0 auto')
+      .carousel-inner
+        - let values = listedFilms.content
+            each val, index in values ? values : ['There are no values']
+              if(index === 0)
+                .carousel-item.active
+                  h2= JSON.stringify(val.title)
+                  h3='Created by ' + JSON.stringify(val.creator) + '('+ JSON.stringify(val.year) +')'
+                  img.d-block.w-100(src=val.url, alt="Image Title")
+              else     
+                .carousel-item
+                  h2= JSON.stringify(val.title)
+                  h3='Created by ' + JSON.stringify(val.creator) + '('+ JSON.stringify(val.year) +')'
+                  img.d-block.w-100(src=val.url, alt="Image Title")
 
+      a.carousel-control-prev(href='#carouselExampleControls' role='button' data-slide='prev')
+          span.carousel-control-prev-icon(aria-hidden='true')
+          span.sr-only Previous
+      a.carousel-control-next(href='#carouselExampleControls' role='button' data-slide='next')
+          span.carousel-control-next-icon(aria-hidden='true')
+          span.sr-only Next
 
-    div.NavButtons
-      a(href="/films")
-        div.NavButton Go Back
+.form-container(style ='width: 550px; height: 400px; margin: 0 auto; position:relative; top: 150px;')      
+  form(id = "form-film", method = "post" style = 'width: 300px;margin: 0 auto; position:relative; top: 20px;')
+    p Enter the details of the film you want to add to the database
+    input.form-control(id = 'type' type='json', placeholder='Type(Going to be removed)' name='film[type]')
+    input.form-control(id = 'title' type='json', placeholder='Film Title' name='film[title]')
+    input.form-control(id = 'year' type='json', placeholder='Release Year' name='film[year]')
+    input.form-control(id = 'creator' type='json', placeholder='Creators' name='film[creator]')
+    input.form-control(id = 'url' type='json', placeholder='Image URL' name='film[url]')
+    input.form-control(id = 'url' type='json', placeholder='Video URL' name='film[videoUrl]')
+    button.btn.btn-primary.btn-lg.btn-block(type='submit') Add   

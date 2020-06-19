@@ -1,0 +1,44 @@
+
+
+nav.navbar.navbar-expand-md.navbar-dark.bg-dark
+  a.navbar-brand(href='/') NODEAPI
+  button.navbar-toggler(type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation')
+    span.navbar-toggler-icon
+  #navbarSupportedContent.collapse.navbar-collapse
+    ul.navbar-nav.mr-auto
+      li.nav-item.active
+      li.nav-item.dropdown
+        a#navbarDropdown.nav-link.dropdown-toggle(href='#' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
+          | Games
+        .dropdown-menu(aria-labelledby='navbarDropdown')
+          a.dropdown-item(href='/games') Games Home
+          .dropdown-divider
+          a.dropdown-item(href='/games/add') Add Games
+          .dropdown-divider
+          a.dropdown-item(href='/games/delete') Delete Games
+          
+  #navbarSupportedContent.collapse.navbar-collapse
+    ul.navbar-nav.mr-auto
+      li.nav-item.active
+      li.nav-item.dropdown
+        a#navbarDropdown.nav-link.dropdown-toggle(href='#' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
+          | Books
+        .dropdown-menu(aria-labelledby='navbarDropdown')
+          a.dropdown-item(href='/books') Books Home
+          .dropdown-divider
+          a.dropdown-item(href='/books/add') Add Books
+          .dropdown-divider
+          a.dropdown-item(href='/books/delete') Delete Books
+
+  #navbarSupportedContent.collapse.navbar-collapse
+    ul.navbar-nav.mr-auto
+      li.nav-item.active
+      li.nav-item.dropdown
+        a#navbarDropdown.nav-link.dropdown-toggle(href='#' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
+          | Films
+        .dropdown-menu(aria-labelledby='navbarDropdown')
+          a.dropdown-item(href='/films') Films Home
+          .dropdown-divider
+          a.dropdown-item(href='/films/add') Add Films
+          .dropdown-divider
+          a.dropdown-item(href='/films/delete') Delete Films
