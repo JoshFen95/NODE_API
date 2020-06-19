@@ -46,8 +46,9 @@ router.post("/add", function (req, res) {
   logger.info(book);
   axios
     .post("http://localhost:8080/api/v1/media/BOOK/add", book)
-    .then((res) => {
+    .then(() => {
       logger.info(res);
+      res.redirect("/books/add");
     })
     .catch((err) => {
       if (err.response.status === 400) {
@@ -58,7 +59,7 @@ router.post("/add", function (req, res) {
       }
       logger.error(`An error has occured. ${err}`);
     });
-  res.redirect("/add");
+  // res.redirect("/add");
 });
 
 // DELETE book
@@ -68,12 +69,15 @@ router.get("/delete", (req, res) => {
   });
 });
 
-router.post("//delete", function (req, res) {
+router.post("/delete", function (req, res) {
   let book = req.body.book;
   logger.info(book);
   axios
     .delete("http://localhost:8080/api/v1/media/BOOK/" + book.id)
-    .then((res) => {})
+    .then(() => {
+
+      res.redirect("/books/delete");
+    })
     .catch((err) => {
       if (err.response.status === 404) {
         console.log("ID could not be found");
@@ -85,7 +89,6 @@ router.post("//delete", function (req, res) {
         `An error occured. Status Code:${err.response.status}. ${err}`
       );
     });
-  res.redirect("/books/delete");
 });
 
 module.exports = router;

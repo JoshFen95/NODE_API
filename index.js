@@ -23,14 +23,14 @@ app.use(express.urlencoded({ extended: true }));
  * Routes Definitions
  */
 app.get("/", (req, res) => {
-  res.render("index", { title: "Home" });
+  res.render("home", { title: "Home" });
 });
 
 app.use("/games", require("./routes/gameRoutes"));
 
 app.use("/books", require("./routes/bookRoutes"));
 
-// app.use("/films",require('./routes/filmRoutes'));
+app.use("/films",require('./routes/filmRoutes'));
 
 /**
  * Server Activation
