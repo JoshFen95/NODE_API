@@ -3,7 +3,7 @@ head
   meta(charset='UTF-8')
   meta(name='viewport' content='width=device-width, initial-scale=1.0')
   meta(http-equiv='X-UA-Compatible' content='ie=edge')
-  title Add Books
+  title Update book
   // JQuery //
   script(src='https://code.jquery.com/jquery-3.4.1.min.js')
   // Bootstrap 4.4.1 //
@@ -18,7 +18,7 @@ link(rel='stylesheet' href='/style2.css')
 // NavBar //
 include navbar
 
-h1 Add Book
+h1 Update Book
 
 
 // Carousel //
@@ -31,11 +31,13 @@ h1 Add Book
                 .carousel-item.active
                   h2= JSON.stringify(val.title)
                   h3='Created by ' + JSON.stringify(val.creator) + '('+ JSON.stringify(val.year) +')'
+                  h3= 'Book ID: ' + JSON.stringify(val.id)
                   img.d-block.w-100(src=val.url, alt="Image Title")
               else     
                 .carousel-item
                   h2= JSON.stringify(val.title)
                   h3='Created by ' + JSON.stringify(val.creator) + '('+ JSON.stringify(val.year) +')'
+                  h3= 'book ID: ' + JSON.stringify(val.id)
                   img.d-block.w-100(src=val.url, alt="Image Title")
 
       a.carousel-control-prev(href='#carouselExampleControls' role='button' data-slide='prev')
@@ -45,11 +47,8 @@ h1 Add Book
           span.carousel-control-next-icon(aria-hidden='true')
           span.sr-only Next
 
-.form-container(style ='width: 550px; height: 350px; margin: 0 auto; position:relative; top: 150px;')      
+.form-container(style ='width: 550px; height: 200px; margin: 0 auto; position:relative; top: 150px;')      
   form(id = "form-book", method = "post" style = 'width: 300px;margin: 0 auto; position:relative; top: 20px;')
-    p Enter the details of the book you want to add to the database
-    input.form-control(id = 'title' type='json', placeholder='Book Title' name='book[title]')
-    input.form-control(id = 'year' type='json', placeholder='Release Year' name='book[year]')
-    input.form-control(id = 'creator' type='json', placeholder='Creators' name='book[creator]')
-    input.form-control(id = 'url' type='json', placeholder='Image URL' name='book[url]')
-    button.btn.btn-primary.btn-lg.btn-block(type='submit') Add   
+    p Enter the ID of the book you want to update
+    input.form-control(id = 'id' type='json', placeholder='Book ID' name='book[id]')
+    button.btn.btn-primary.btn-lg.btn-block(type='submit') Submit    

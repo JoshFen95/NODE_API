@@ -12,9 +12,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@okta/jwt-verifier": "0.0.12",
+    "alert": "^5.0.0",
     "axios-https-proxy-fix": "^0.17.1",
     "body-parser": "^1.19.0",
     "bootstrap": "^4.5.0",
+    "dotenv": "^6.0.0",
     "express": "^4.17.1",
     "nodemon": "^2.0.4",
     "promise": "^8.1.0",

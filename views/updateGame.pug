@@ -3,7 +3,7 @@ head
   meta(charset='UTF-8')
   meta(name='viewport' content='width=device-width, initial-scale=1.0')
   meta(http-equiv='X-UA-Compatible' content='ie=edge')
-  title Add Books
+  title Update Game
   // JQuery //
   script(src='https://code.jquery.com/jquery-3.4.1.min.js')
   // Bootstrap 4.4.1 //
@@ -18,24 +18,26 @@ link(rel='stylesheet' href='/style2.css')
 // NavBar //
 include navbar
 
-h1 Add Book
+h1 Update Game
 
 
 // Carousel //
 .carousel-backing(style = 'width: 1500px; height: 700px; margin: 0 auto; position:relative; top:80px;')
   #carouselExampleControls.carousel.slide(data-ride='carousel' style ='width: 550px; height: 550px; margin: 0 auto')
       .carousel-inner
-        - let values = listedBooks.content
+        - let values = listedGames.content
             each val, index in values ? values : ['There are no values']
               if(index === 0)
                 .carousel-item.active
                   h2= JSON.stringify(val.title)
                   h3='Created by ' + JSON.stringify(val.creator) + '('+ JSON.stringify(val.year) +')'
+                  h3= 'Game ID: ' + JSON.stringify(val.id)
                   img.d-block.w-100(src=val.url, alt="Image Title")
               else     
                 .carousel-item
                   h2= JSON.stringify(val.title)
                   h3='Created by ' + JSON.stringify(val.creator) + '('+ JSON.stringify(val.year) +')'
+                  h3= 'Game ID: ' + JSON.stringify(val.id)
                   img.d-block.w-100(src=val.url, alt="Image Title")
 
       a.carousel-control-prev(href='#carouselExampleControls' role='button' data-slide='prev')
@@ -45,11 +47,8 @@ h1 Add Book
           span.carousel-control-next-icon(aria-hidden='true')
           span.sr-only Next
 
-.form-container(style ='width: 550px; height: 350px; margin: 0 auto; position:relative; top: 150px;')      
-  form(id = "form-book", method = "post" style = 'width: 300px;margin: 0 auto; position:relative; top: 20px;')
-    p Enter the details of the book you want to add to the database
-    input.form-control(id = 'title' type='json', placeholder='Book Title' name='book[title]')
-    input.form-control(id = 'year' type='json', placeholder='Release Year' name='book[year]')
-    input.form-control(id = 'creator' type='json', placeholder='Creators' name='book[creator]')
-    input.form-control(id = 'url' type='json', placeholder='Image URL' name='book[url]')
-    button.btn.btn-primary.btn-lg.btn-block(type='submit') Add   
+.form-container(style ='width: 550px; height: 200px; margin: 0 auto; position:relative; top: 150px;')      
+  form(id = "form-game", method = "post" style = 'width: 300px;margin: 0 auto; position:relative; top: 20px;')
+    p Enter the ID of the game you want to update
+    input.form-control(id = 'id' type='json', placeholder='Game ID' name='game[id]')
+    button.btn.btn-primary.btn-lg.btn-block(type='submit') Submit    
