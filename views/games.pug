@@ -32,7 +32,7 @@ h1 View Games
                 .carousel-item.active
                   h2= JSON.stringify(val.title)
                   h3='Created by ' + JSON.stringify(val.creator) + '('+ JSON.stringify(val.year) +')'
-                  img.d-block.w-100(src=val.url, alt="Image Title")
+                  img.d-block.w-100(src=val.url, alt= val.title + " image")
                   .video-backing
                     .embed-responsive.embed-responsive-16by9(style = 'width: 500px; height: 250px; margin: 0 auto; position:relative; top: 25px;')
                       iframe.embed-responsive-item(src=val.videoUrl, alt= 'https://www.youtube.com/embed/zpOULjyy-n8?rel=0',allowfullscreen='')

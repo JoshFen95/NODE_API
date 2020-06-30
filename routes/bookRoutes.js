@@ -11,7 +11,7 @@ const router = express.Router();
 
 let getBooks = function () {
   return new Promise((resolve) => {
-    axios.get("http://localhost:8080/api/v1/media/BOOK").then((res) => {
+    axios.get("http://localhost:8080/api/v1/media/book").then((res) => {
       return resolve(res.data);
     });
   });
@@ -45,7 +45,7 @@ router.post("/add", function (req, res) {
   let book = req.body.book;
   logger.info(book);
   axios
-    .post("http://localhost:8080/api/v1/media/BOOK/add", book)
+    .post("http://localhost:8080/api/v1/media/book/add", book)
     .then(() => {
       logger.info(res);
       res.redirect("/books/add");
@@ -73,7 +73,7 @@ router.post("/delete", function (req, res) {
   let book = req.body.book;
   logger.info(book);
   axios
-    .delete("http://localhost:8080/api/v1/media/BOOK/" + book.id)
+    .delete("http://localhost:8080/api/v1/media/book/" + book.id)
     .then(() => {
 
       res.redirect("/books/delete");
@@ -88,6 +88,61 @@ router.post("/delete", function (req, res) {
       logger.error(
         `An error occured. Status Code:${err.response.status}. ${err}`
       );
+    });
+});
+
+// GET BOOKS BY ID AND UPDATE//
+
+router.get("/update", (req, res) => {
+  getBooks().then((list) => {
+    res.render("UpdateBook", { listedBooks: { content: list } });
+  });
+});
+
+router.post("/update", function (req, res) {
+  let book = req.body.book;
+  res.redirect("/books/update/" + book.id);
+});
+
+router.get("/update/:id", (req, res) => {
+  axios
+    .get("http://localhost:8080/api/v1/media/book/" + req.params.id)
+    .then((book) => {
+      console.log("logging here");
+      console.log(book.data.id);
+      // logger.info(res);
+      res.render("doUpdateBook", { book });
+    })
+    .catch((err) => {
+      if (err.response.status === 404) {
+        console.log("ID could not be found");
+      } else {
+        console.error("Error Occurred");
+        throw err;
+      }
+      logger.error(
+        `An error occured. Status Code:${err.response.status}. ${err}`
+      );
+    });
+});
+
+router.post("/update/:id/", function (req, res) {
+  let book = req.body.book;
+  logger.info(book);
+  axios
+    .put("http://localhost:8080/api/v1/media/book/" + book.id, book)
+    .then(() => {
+      logger.info(res);
+      res.redirect("/books");
+    })
+    .catch((err) => {
+      if (err.response.status === 400) {
+        console.error("Please ensure the correct data is entered");
+      } else {
+        console.error("Error Occurred");
+        throw err;
+      }
+      logger.error(`An error has occured. ${err}`);
     });
 });
 
