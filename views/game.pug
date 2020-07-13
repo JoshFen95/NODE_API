@@ -3,7 +3,7 @@ head
   meta(charset='UTF-8')
   meta(name='viewport' content='width=device-width, initial-scale=1.0')
   meta(http-equiv='X-UA-Compatible' content='ie=edge')
-  title Films
+  title GAMES
   // JQuery //
   script(src='https://code.jquery.com/jquery-3.4.1.min.js')
   // Bootstrap 4.4.1 //
@@ -19,20 +19,20 @@ body
 include navbar
 
 
-h1 View Films
+h1 View Games
 
 
 // Carousel //
 .carousel-backing(style = 'width: 1500px; height: 700px; margin: 0 auto; position:relative; top:80px;')
   #carouselExampleControls.carousel.slide(data-ride='carousel' style ='width: 550px; height: 550px; margin: 0 auto;')
       .carousel-inner
-        - let values = listedFilms.content
+        - let values = listedItems.content
             each val, index in values ? values : ['There are no values']
               if(index === 0)
                 .carousel-item.active
                   h2= JSON.stringify(val.title)
                   h3='Created by ' + JSON.stringify(val.creator) + '('+ JSON.stringify(val.year) +')'
-                  img.d-block.w-100(src=val.url, alt="Image Title")
+                  img.d-block.w-100(src=val.url, alt= val.title + " image")
                   .video-backing
                     .embed-responsive.embed-responsive-16by9(style = 'width: 500px; height: 250px; margin: 0 auto; position:relative; top: 25px;')
                       iframe.embed-responsive-item(src=val.videoUrl, alt= 'https://www.youtube.com/embed/zpOULjyy-n8?rel=0',allowfullscreen='')
