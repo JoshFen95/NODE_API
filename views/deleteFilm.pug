@@ -25,11 +25,11 @@ h1 Delete Film
 .carousel-backing(style = 'width: 1500px; height: 700px; margin: 0 auto; position:relative; top:80px;')
   #carouselExampleControls.carousel.slide(data-ride='carousel' style ='width: 550px; height: 550px; margin: 0 auto')
       .carousel-inner
-        - let values = listedFilms.content
+        - let values = listedItems.content
             each val, index in values ? values : ['There are no values']
               if(index === 0)
                 .carousel-item.active
-                  h2= JSON.stringify(val.title)
+                  h2(id = 'h2')= JSON.stringify(val.title)
                   h3= 'Game ID: ' + JSON.stringify(val.id)
                   img.d-block.w-100(src=val.url, alt="Image Title")
               else     
@@ -49,5 +49,5 @@ h1 Delete Film
 .form-container(style ='width: 550px; height: 200px; margin: 0 auto; position:relative; top: 150px;')      
   form(id = "form-film", method = "post" style = 'width: 300px;margin: 0 auto; position:relative; top: 20px;')
     p Enter the ID of the film you want to delete from the database
-    input.form-control(id = 'id' type='json', placeholder='Film ID' name='film[id]')
-    button.btn.btn-primary.btn-lg.btn-block(type='submit') Delete   
+    input.form-control(id = 'id' type='json', placeholder='Film ID' name='item[id]')
+    button.btn.btn-primary.btn-lg.btn-block(id='delete' type='submit') Delete   

@@ -6,12 +6,14 @@
 const express = require("express");
 const path = require("path");
 const dotenv = require('dotenv');
+const morgan = require('morgan');
+// const logger = require("./logger/winston")
+
 
 /**
  * App Variables
  */
 const app = express();
-// const port = process.env.PORT || "8000";
 dotenv.config();
 
 /**
@@ -22,19 +24,28 @@ app.set("view engine", "pug");
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
 
+if (process.env.NODE_ENV === 'development') {
+  app.use(morgan('dev'))
+}
+
+// app.set(require("./logger/winston"));
+
+
 
 /**
  * Routes Definitions
  */
-app.get("/", (req, res) => {
+app.get("/home", (req, res) => {
   res.render("home", { title: "Home" });
 });
 
-app.use("/games", require("./routes/gameRoutes"));
+// app.use("/game", require("./routes/gameRoutes"));
 
-app.use("/books", require("./routes/bookRoutes"));
+// app.use("/books", require("./routes/bookRoutes"));
 
-app.use("/films",require('./routes/filmRoutes'));
+// app.use("/films",require('./routes/filmRoutes'));
+
+app.use("/", require("./routes/genericRoutes")); 
 
 /**
  * Server Activation

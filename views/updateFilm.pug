@@ -25,7 +25,7 @@ h1 Update Film
 .carousel-backing(style = 'width: 1500px; height: 700px; margin: 0 auto; position:relative; top:80px;')
   #carouselExampleControls.carousel.slide(data-ride='carousel' style ='width: 550px; height: 550px; margin: 0 auto')
       .carousel-inner
-        - let values = listedFilms.content
+        - let values = listedItems.content
             each val, index in values ? values : ['There are no values']
               if(index === 0)
                 .carousel-item.active
@@ -50,5 +50,5 @@ h1 Update Film
 .form-container(style ='width: 550px; height: 200px; margin: 0 auto; position:relative; top: 150px;')      
   form(id = "form-game", method = "post" style = 'width: 300px;margin: 0 auto; position:relative; top: 20px;')
     p Enter the ID of the game you want to update
-    input.form-control(id = 'id' type='json', placeholder='Film ID' name='film[id]')
+    input.form-control(id = 'id' type='json', placeholder='Film ID' name='item[id]')
     button.btn.btn-primary.btn-lg.btn-block(type='submit') Submit    
