@@ -29,7 +29,7 @@ const router = express.Router();
 let getItems = function (itemType) {
   return new Promise((resolve) => {
     axios
-      .get("http://localhost:8080/api/v1/media/"+itemType)
+      .get("http://localhost:8080/api/"+itemType)
       .then((res) => {
         resolve(res.data);
       })
@@ -91,7 +91,7 @@ router.post("/:variable/add", function (req, res) {
   let itemType = req.params.variable;
   let item = req.body.item;
   axios
-    .post("http://localhost:8080/api/v1/media/" + itemType + "/add", item)
+    .post("http://localhost:8080/api/" + itemType + "/add", item)
     .then(() => {
       logger.log('info', res);
       res.redirect("/"+itemType+"/add");
@@ -156,7 +156,7 @@ router.post("/:variable/delete", function (req, res) {
   console.log(item.id);
   logger.log('info',item);
   axios
-    .delete("http://localhost:8080/api/v1/media/" + itemType + "/" + item.id)
+    .delete("http://localhost:8080/api/" + itemType + "/" + item.id)
     .then(() => {
       logger.log('info',res);
       res.redirect("/"+itemType+ "/delete");
@@ -190,7 +190,7 @@ router.post("/:variable/update", function (req, res) {
 router.get("/:variable/update/:id", (req, res) => {
   let itemType = req.params.variable;
   axios
-    .get("http://localhost:8080/api/v1/media/" + itemType +"/" + req.params.id)
+    .get("http://localhost:8080/api/" + itemType +"/" + req.params.id)
     .then((item) => {
       logger.log('info',item.data);
 
@@ -213,7 +213,7 @@ router.post("/:variable/update/:id/", function (req, res) {
   let item = req.body.item;
   logger.log('info',item);
   axios
-    .put("http://localhost:8080/api/v1/media/"+itemType+ "/" + item.id, item)
+    .put("http://localhost:8080/api/"+itemType+ "/" + item.id, item)
     .then(() => {
       logger.log('info',item);
       res.redirect("/"+itemType+ "/update");
